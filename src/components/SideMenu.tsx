@@ -1,44 +1,33 @@
+import { Calendar, House, LogOut, Menu, Popcorn, User } from 'lucide-react';
 import React from 'react';
+import Logo from './Logo';
 
 interface SideMenuProps {
   isOpen: boolean; // Estado para controlar se o menu está aberto
-  onClose: () => void; // Função para fechar o menu
+  setIsMenuOpen: (isOpen: boolean) => void; // Função para alterar o estado do menu
+  logout: () => void; // Função para fechar o menu
 }
 
-const SideMenu: React.FC<SideMenuProps> = ({ isOpen, onClose }) => {
+const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsMenuOpen, logout }) => {
   return (
     <>
-      <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={onClose}
-      ></div>
-
-      <div
-        className={`fixed top-0 left-0 w-64 h-full bg-white dark:bg-gray-800 shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full' // Controla a posição com translate
-        }`}
-      >
-        <div className="p-4">
-          {/* Exemplo de itens de menu */}
-          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Menu</h2>
-          <ul>
-            <li className="mb-2">
-              <a href="#" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400" onClick={onClose}>Início</a>
-            </li>
-            <li className="mb-2">
-              <a href="#" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400" onClick={onClose}>Sobre</a>
-            </li>
-            <li className="mb-2">
-              <a href="#" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400" onClick={onClose}>Serviços</a>
-            </li>
-            <li className="mb-2">
-              <a href="#" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400" onClick={onClose}>Contato</a>
-            </li>
-          </ul>
-        </div>
+      <div className="flex flex-row">
+        <Menu onClick={() => setIsMenuOpen(!isOpen)}></Menu>
       </div>
+      <div className="m-2 h-0.5 w-10 bg-[#583FAA]"></div>
+      <div className="flex flex-row">
+        <House></House>
+        {isOpen && (<h1 className="pl-5">Menu Principal</h1>)}
+      </div>
+      <div className="flex flex-row"><Popcorn></Popcorn> {isOpen && (<h1 className="pl-5">Filmes e Séries</h1>)}</div>
+
+      <div className="flex flex-row"><Calendar></Calendar> {isOpen && (<h1 className="pl-5">Agenda</h1>)}</div>
+
+      <div className="flex flex-row"><User></User> {isOpen && (<h1 className="pl-5">Perfil</h1>)}</div>
+
+      <div className="m-2 h-0.5 w-10 bg-[#583FAA]"></div>
+      <div className="flex flex-row"><LogOut onClick={logout}></LogOut> {isOpen && (<h1 className="pl-5">Sair</h1>)}</div>
+
     </>
   );
 };
