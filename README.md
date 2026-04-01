@@ -1,1 +1,4 @@
-# React + TypeScript + Vite
+# LetterBros Frontend
+
+- React/Typescript
+- Vite + tailwind
