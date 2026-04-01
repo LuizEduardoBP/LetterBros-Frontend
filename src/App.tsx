@@ -1,14 +1,18 @@
 import './App.css'
-import Header from './components/Header'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'; // Adicionado
 import HomePage from './pages/homepage/HomePage'
 import LoginPage from './pages/login/LoginPage'
 
 
 function App() {
   return (
-    <LoginPage></LoginPage>
-//    <HomePage></HomePage>
-
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

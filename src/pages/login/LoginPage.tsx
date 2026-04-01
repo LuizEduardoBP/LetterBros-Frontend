@@ -1,8 +1,11 @@
 import Input from "../../components/Input";
 import Button from "../../components/Button"; // Importa o novo componente Button
 import Logo from "../../components/Logo";
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 const LoginPage: React.FC = () => {
+    const navigate = useNavigate(); // Inicializa o hook de navegação
+
     return (
         <div className="flex min-h-screen bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100">
             <div className="flex flex-3 justify-center items-center text-center text-gray-900 dark:text-gray-100 bg-gradient-to-r from-[#8466EA] to-[#39267B]">
@@ -23,7 +26,7 @@ const LoginPage: React.FC = () => {
                     <div className="flex flex-col items-center mt-6">
                         <Button
                             type="submit"
-                            onClick={() => console.log('Botão Entrar clicado!')}
+                            onClick={() => navigate('/home')} // Chama a função navigate para ir para '/home'
                             className="mb-4" // w-3/4 para ser menor que o input, mb-4 para espaçamento
                         >
                             Entrar
@@ -34,6 +37,10 @@ const LoginPage: React.FC = () => {
                         <a href="#" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                             Criar conta
                         </a>
+                    </div>
+
+                    <div className="flex flex-col justify-end items-center mt-6">
+                        <h3 className="text-gray-600 font-light">Copyrigth @ GDA 2026 </h3>
                     </div>
 
                 </div>
