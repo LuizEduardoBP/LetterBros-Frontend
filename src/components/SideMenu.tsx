@@ -1,33 +1,67 @@
 import { Calendar, House, LogOut, Menu, Popcorn, User } from 'lucide-react';
 import React from 'react';
-import Logo from './Logo';
 
 interface SideMenuProps {
-  isOpen: boolean; // Estado para controlar se o menu está aberto
-  setIsMenuOpen: (isOpen: boolean) => void; // Função para alterar o estado do menu
-  logout: () => void; // Função para fechar o menu
+  isOpen: boolean; 
+  setIsMenuOpen: (isOpen: boolean) => void; 
+  logout: () => void; 
 }
 
-const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsMenuOpen, logout }) => {
+interface MenuItem {
+  icon: React.ElementType; 
+  text: string;
+  path?: string;
+  action?: () => void; 
+}
+
+const SideMenu = ({ isOpen, setIsMenuOpen, logout }: SideMenuProps) => {
+  const menuItems: MenuItem[] = [
+    { icon: House, text: 'Menu Principal', path: '/' },
+    { icon: Popcorn, text: 'Filmes e Séries', path: '/movies-series' },
+    { icon: Calendar, text: 'Agenda', path: '/agenda' },
+    { icon: User, text: 'Perfil', path: '/profile' },
+  ];
+
+  const handleMenuItemClick = (item: MenuItem) => {
+    setIsMenuOpen(false);
+    item.action?.(); 
+  };
+
   return (
     <>
-      <div className="flex flex-row">
-        <Menu onClick={() => setIsMenuOpen(!isOpen)}></Menu>
+      <div className="flex flex-row items-center justify-end w-full px-3"> 
+        <Menu
+          onClick={() => setIsMenuOpen(!isOpen)}
+          className="cursor-pointer text-gray-100 hover:text-white transition-colors duration-200"
+          aria-label={isOpen ? "Fechar Menu" : "Abrir Menu"} 
+          aria-expanded={isOpen}
+        />
       </div>
       <div className="m-2 h-0.5 w-10 bg-[#583FAA]"></div>
-      <div className="flex flex-row">
-        <House></House>
-        {isOpen && (<h1 className="pl-5">Menu Principal</h1>)}
-      </div>
-      <div className="flex flex-row"><Popcorn></Popcorn> {isOpen && (<h1 className="pl-5">Filmes e Séries</h1>)}</div>
 
-      <div className="flex flex-row"><Calendar></Calendar> {isOpen && (<h1 className="pl-5">Agenda</h1>)}</div>
-
-      <div className="flex flex-row"><User></User> {isOpen && (<h1 className="pl-5">Perfil</h1>)}</div>
+      {menuItems.map((item) => (
+        <div
+          key={item.text} 
+          className="flex flex-row items-center py-2 px-3 rounded-md cursor-pointer text-gray-100 hover:bg-[#7a5cdb] transition-colors duration-200 group"
+          onClick={() => handleMenuItemClick(item)}
+        >
+          <item.icon className="w-5 h-5 text-gray-100 group-hover:text-white" aria-label={item.text} />
+          {isOpen && (<h1 className="pl-5 text-base font-medium group-hover:text-white">{item.text}</h1>)}
+        </div>
+      ))}
 
       <div className="m-2 h-0.5 w-10 bg-[#583FAA]"></div>
-      <div className="flex flex-row"><LogOut onClick={logout}></LogOut> {isOpen && (<h1 className="pl-5">Sair</h1>)}</div>
 
+      <div
+        className="flex flex-row items-center py-2 px-3 rounded-md cursor-pointer text-gray-100 hover:bg-[#7a5cdb] transition-colors duration-200 group"
+        onClick={() => {
+          logout();
+          setIsMenuOpen(false);
+        }}
+      >
+        <LogOut className="w-5 h-5 text-gray-100 group-hover:text-white" aria-label="Sair" />
+        {isOpen && (<h1 className="pl-5 text-base font-medium group-hover:text-white">Sair</h1>)}
+      </div>
     </>
   );
 };

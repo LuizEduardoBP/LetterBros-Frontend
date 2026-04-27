@@ -4,7 +4,7 @@ import Hamburger from './Hamburger';
 import Switch from './Switch';
 import SideMenu from './SideMenu';
 
-const Header: React.FC = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -55,7 +55,7 @@ const Header: React.FC = () => {
         </div> */}
       </header>
 
-      <SideMenu isOpen={isMenuOpen} onClose={toggleMenu} />
+      <SideMenu isOpen={isMenuOpen} setIsMenuOpen={toggleMenu} logout={toggleMenu}/>
     </>
   );
 };

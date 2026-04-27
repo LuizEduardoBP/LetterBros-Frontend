@@ -3,7 +3,7 @@ import Button from "../../components/Button"; // Importa o novo componente Butto
 import Logo from "../../components/Logo";
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
     const navigate = useNavigate(); // Inicializa o hook de navegação
 
     return (

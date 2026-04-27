@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SideMenu from "../../components/SideMenu";
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const open = isMenuOpen ? "flex flex-col w-66 bg-[#6E50D4] pt-5 pl-8 p-3 gap-5 items-start" : "flex flex-col w-22 bg-[#6E50D4] pt-5 p-3 gap-5 items-center";
