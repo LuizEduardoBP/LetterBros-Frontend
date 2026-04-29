@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import LogoDark from '../assets/logo-no-letter.svg';
 import LogoLigth from '../assets/logo-no-letter.svg';
 

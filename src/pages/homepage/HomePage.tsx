@@ -5,7 +5,9 @@ import SideMenu from "../../components/SideMenu";
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const open = isMenuOpen ? "flex flex-col w-66 bg-[#6E50D4] pt-5 pl-8 p-3 gap-5 items-start" : "flex flex-col w-22 bg-[#6E50D4] pt-5 p-3 gap-5 items-center";
+  const open = isMenuOpen
+    ? "flex flex-col w-[20vw] min-w-56 max-w-72 bg-[#6E50D4] pt-4 px-3 pb-3 gap-3 items-start"
+    : "flex flex-col w-18 bg-[#6E50D4] pt-4 p-3 gap-3 items-center";
 
 
   return (

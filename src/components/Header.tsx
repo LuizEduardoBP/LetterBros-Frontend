@@ -3,8 +3,10 @@ import Logo from './Logo';
 import Hamburger from './Hamburger';
 import Switch from './Switch';
 import SideMenu from './SideMenu';
+import { useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -55,7 +57,11 @@ const Header: React.FC = () => {
         </div> */}
       </header>
 
-      <SideMenu isOpen={isMenuOpen} onClose={toggleMenu} />
+      <SideMenu
+        isOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        logout={() => navigate('/login')}
+      />
     </>
   );
 };
