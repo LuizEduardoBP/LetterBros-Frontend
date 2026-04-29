@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SideMenu from "../../components/SideMenu";
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const open = isMenuOpen
@@ -12,11 +12,11 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="flex flex-row min-h-screen bg-[#14181C] text-gray-100"> 
-      <div className={open}>
-        <SideMenu isOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} logout={() => navigate('/login')}></SideMenu>
+      <div className={sidebarClass}>
+        <SideMenu isOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} logout={() => navigate('/login')} />
       </div>
     </div>
-  )
+  );
 };
 
 export default HomePage;

@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface InputProps {
     type: 'email' | 'password' | 'text'; // Adicionado 'password' e 'text' para uso mais geral
@@ -6,7 +5,7 @@ interface InputProps {
     label: string;
 }
 
-const Input: React.FC<InputProps> = ({ type, placeholder, label }) => {
+const Input = ({ type, placeholder, label }: InputProps) => {
     return (
         <div className="mb-4">
             <label htmlFor={type} className="block text-gray-400 text-sm font-bold mb-2">

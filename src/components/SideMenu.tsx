@@ -3,9 +3,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 interface SideMenuProps {
-  isOpen: boolean; // Estado para controlar se o menu está aberto
-  setIsMenuOpen: (isOpen: boolean) => void; // Função para alterar o estado do menu
-  logout: () => void; // Função para fechar o menu
+  isOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
+  logout: () => void;
 }
 
 const menuItems = [
@@ -93,7 +93,22 @@ const SideMenu: React.FC<SideMenuProps> = ({ isOpen, setIsMenuOpen, logout }) =>
         )}
       </button>
 
-    </>
+        <div
+          className={`flex flex-row items-center py-2 px-3 rounded-md cursor-pointer text-gray-100 hover:bg-[#7a5cdb] transition-all duration-300 group ${!isOpen ? 'justify-center' : 'justify-start'}`}
+          onClick={() => {
+            logout();
+            setIsMenuOpen(false);
+          }}
+        >
+          <LogOut className="w-5 h-5 text-gray-100 group-hover:text-white shrink-0" aria-label="Sair" />
+          <div className={`overflow-hidden transition-all duration-300 flex items-center ${isOpen ? 'max-w-xs opacity-100 ml-4' : 'max-w-0 opacity-0 ml-0'}`}>
+            <span className="text-base font-medium group-hover:text-white whitespace-nowrap">
+              Sair
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
