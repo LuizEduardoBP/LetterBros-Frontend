@@ -10,6 +10,9 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/filmes-e-series" element={<HomePage />} />
+        <Route path="/agenda" element={<HomePage />} />
+        <Route path="/perfil" element={<HomePage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
